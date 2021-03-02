@@ -77,6 +77,7 @@ void setup() {
    // Setup Serial Monitor
    Serial.begin (9600);
    Consumer.begin();
+   
 
       //Encoder 1
    // Set encoder pins as inputs  
@@ -289,17 +290,53 @@ while (!digitalRead(Third_inputSwitch)) {
     Keyboard.press('n');
     Keyboard.releaseAll();
     
-    
-    
     delay(2000);
   }
+
+
 
 
   if (!digitalRead(Switch2)) {
    
     //Consumer.write(MEDIA_VOLUME_MUTE);                                                            //Switch 2
-    Keyboard.write(KEY_F20);
+    //Keyboard.write(KEY_F20);
+
+    //Open Steam
+    Keyboard.press(KEY_LEFT_GUI);
+    Keyboard.press('r');
+    Keyboard.releaseAll();
+    delay(100);
+    const char steam[] ="@C:Program Files (x86)/Steam/steam.exe@";
+    
+    for(int i =0; i < strlen(steam); i++ ) {
+      char c = steam[i];
+      Keyboard.write(c);
+    }
+    delay(50);
+    
+    Keyboard.press(KEY_ENTER);
+    Keyboard.release(KEY_ENTER);
+    
     delay(300);
+
+    //Open Discord
+    Keyboard.press(KEY_LEFT_GUI);
+    Keyboard.press('r');
+    Keyboard.releaseAll();
+    delay(100);
+    const char discord[] ="@%localappdata%/Discord/app-0.0.309/Discord.exe@";
+    
+    for(int i =0; i < strlen(discord); i++ ) {
+      char c = discord[i];
+      Keyboard.write(c);
+    }
+    delay(50);
+    
+    Keyboard.press(KEY_ENTER);
+    Keyboard.release(KEY_ENTER);
+    
+    delay(2000);
+    
   }
 
 
